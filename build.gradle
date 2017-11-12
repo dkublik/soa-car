@@ -1,0 +1,58 @@
+apply plugin: 'io.spring.dependency-management'
+
+allprojects {
+    group = 'pl.dk'
+	version = '0.0.1-SNAPSHOT'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:Finchley.M2")
+    }
+    dependencies {
+        dependency('org.junit.jupiter:junit-jupiter-api:5.0.1')
+        dependency('io.rest-assured:rest-assured:3.0.5')
+        dependency('com.github.tomakehurst:wiremock-standalone:2.11.0')
+        dependency('org.junit.jupiter:junit-jupiter-engine:5.0.1')
+    }
+}
+
+subprojects {
+	buildscript {
+		ext {
+			springBootVersion = '2.0.0.M3'
+		}
+		repositories {
+			mavenCentral()
+			maven { url "https://repo.spring.io/snapshot" }
+			maven { url "https://repo.spring.io/milestone" }
+		}
+		dependencies {
+			classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+			classpath('org.junit.platform:junit-platform-gradle-plugin:1.0.1')
+		}
+	}
+
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+
+}
+
+wrapper {
+    gradleVersion '4.3.1'
+}
