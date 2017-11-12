@@ -17,19 +17,11 @@ buildscript {
     }
 }
 
-dependencyManagement {
-    imports {
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:Finchley.M2")
-    }
-    dependencies {
-        dependency('org.junit.jupiter:junit-jupiter-api:5.0.1')
-        dependency('io.rest-assured:rest-assured:3.0.5')
-        dependency('com.github.tomakehurst:wiremock-standalone:2.11.0')
-        dependency('org.junit.jupiter:junit-jupiter-engine:5.0.1')
-    }
-}
+
 
 subprojects {
+    apply plugin: 'io.spring.dependency-management'
+
 	buildscript {
 		ext {
 			springBootVersion = '2.0.0.M3'
@@ -50,6 +42,18 @@ subprojects {
 		maven { url "https://repo.spring.io/snapshot" }
 		maven { url "https://repo.spring.io/milestone" }
 	}
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Finchley.M2")
+        }
+        dependencies {
+            dependency('org.junit.jupiter:junit-jupiter-api:5.0.1')
+            dependency('io.rest-assured:rest-assured:3.0.5')
+            dependency('com.github.tomakehurst:wiremock-standalone:2.11.0')
+            dependency('org.junit.jupiter:junit-jupiter-engine:5.0.1')
+        }
+    }
 
 }
 
