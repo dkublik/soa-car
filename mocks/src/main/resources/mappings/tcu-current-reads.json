@@ -4,16 +4,16 @@
     "method": "POST",
     "bodyPatterns" : [
       {
-        "matchesJsonPath" : "$.vehicle-speed"
+        "matchesJsonPath" : "$.vehicleSpeed"
       },
       {
         "matchesJsonPath" : "$.rpm"
       },
       {
-        "matchesJsonPath" : "$.throttle-level"
+        "matchesJsonPath" : "$.throttleLevel"
       },
       {
-        "matchesJsonPath" : "$.transmission-fluid-temperature"
+        "matchesJsonPath" : "$.transmissionFluidTemperature"
       }
     ]
   },

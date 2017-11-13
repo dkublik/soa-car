@@ -1,12 +1,12 @@
-package pl.dk.soa.mocks;
+package pl.dk.soa.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MocksApplication {
+public class ServicesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MocksApplication.class, args);
+		SpringApplication.run(ServicesApplication.class, args);
 	}
 }

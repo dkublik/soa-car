@@ -1,4 +1,4 @@
-package pl.dk.soa.mocks;
+package pl.dk.soa.service;
 
 import com.github.tomakehurst.wiremock.common.ClasspathFileSource;
 import org.springframework.stereotype.Service;
