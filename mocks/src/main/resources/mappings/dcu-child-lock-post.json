@@ -1,0 +1,17 @@
+{
+  "request": {
+    "urlPath": "/dcu/child-lock",
+    "method": "POST",
+    "bodyPatterns" : [
+      {
+        "matchesJsonPath" : "$.on"
+      }
+    ]
+  },
+  "response": {
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "status": 202
+  }
+}

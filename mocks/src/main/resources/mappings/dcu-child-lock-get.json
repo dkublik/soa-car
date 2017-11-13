@@ -1,0 +1,13 @@
+{
+  "request": {
+    "urlPath": "/dcu/child-lock",
+    "method": "GET"
+  },
+  "response": {
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"child-lock\": \"ON\"}",
+    "status": 200
+  }
+}

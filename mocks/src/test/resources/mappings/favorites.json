@@ -1,9 +1,0 @@
-{
-  "request" : {
-    "urlPath" : "/favorites1",
-    "method" : "ANY"
-  },
-  "response" : {
-    "status" : 200
-  }
-}

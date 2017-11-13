@@ -1,0 +1,17 @@
+{
+  "request": {
+    "urlPath": "/dcu/mirror-position",
+    "method": "POST",
+    "bodyPatterns" : [
+      {
+        "matchesJsonPath" : "$.position"
+      }
+    ]
+  },
+  "response": {
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "status": 202
+  }
+}

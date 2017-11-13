@@ -1,0 +1,13 @@
+{
+  "request": {
+    "urlPath": "/ecu/rpm-idle",
+    "method": "GET"
+  },
+  "response": {
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"rpm\": \"700\"}",
+    "status": 200
+  }
+}

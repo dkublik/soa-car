@@ -6,10 +6,10 @@ sourceCompatibility = 1.8
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('com.github.tomakehurst:wiremock-standalone')
 
 	testCompile('org.junit.jupiter:junit-jupiter-api')
 	testCompile('io.rest-assured:rest-assured')
-	testCompile('com.github.tomakehurst:wiremock-standalone')
 
 	testRuntime('org.junit.jupiter:junit-jupiter-engine')
 }

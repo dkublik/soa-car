@@ -1,0 +1,26 @@
+{
+  "request": {
+    "urlPath": "/tcu/current-reads",
+    "method": "POST",
+    "bodyPatterns" : [
+      {
+        "matchesJsonPath" : "$.vehicle-speed"
+      },
+      {
+        "matchesJsonPath" : "$.rpm"
+      },
+      {
+        "matchesJsonPath" : "$.throttle-level"
+      },
+      {
+        "matchesJsonPath" : "$.transmission-fluid-temperature"
+      }
+    ]
+  },
+  "response": {
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "status": 202
+  }
+}

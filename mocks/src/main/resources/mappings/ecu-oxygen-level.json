@@ -1,0 +1,13 @@
+{
+  "request": {
+    "urlPath": "/ecu/oxygen-level",
+    "method": "GET"
+  },
+  "response": {
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"level\": \"RUNNING_LEAN\"}",
+    "status": 200
+  }
+}
