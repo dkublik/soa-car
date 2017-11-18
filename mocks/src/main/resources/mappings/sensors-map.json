@@ -1,13 +1,13 @@
 {
   "request": {
-    "urlPath": "/ecu/oxygen-level",
+    "urlPath": "/sensors/map",
     "method": "GET"
   },
   "response": {
     "headers": {
       "Content-Type": "application/json"
     },
-    "body": "{\"level\": \"RUNNING_LEAN\"}",
+    "body": "{\"pressure\": \"90\"}",
     "status": 200
   }
 }

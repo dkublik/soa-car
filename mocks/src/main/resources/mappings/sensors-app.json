@@ -1,13 +1,13 @@
 {
   "request": {
-    "urlPath": "/dcu/child-lock",
+    "urlPath": "/sensors/app",
     "method": "GET"
   },
   "response": {
     "headers": {
       "Content-Type": "application/json"
     },
-    "body": "{\"childLock\": \"ON\"}",
+    "body": "{\"pedal-position\": \"40\"}",
     "status": 200
   }
 }

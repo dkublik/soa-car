@@ -1,13 +1,13 @@
 {
   "request": {
-    "urlPath": "/dcu/belts",
+    "urlPath": "/sensors/vss",
     "method": "GET"
   },
   "response": {
     "headers": {
       "Content-Type": "application/json"
     },
-    "body": "{\"belts\": \"ON\"}",
+    "body": "{\"speed\": \"120\"}",
     "status": 200
   }
 }

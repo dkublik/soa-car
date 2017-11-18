@@ -1,13 +1,13 @@
 {
   "request": {
-    "urlPath": "/ecu/temperature",
+    "urlPath": "/sensors/cts",
     "method": "GET"
   },
   "response": {
     "headers": {
       "Content-Type": "application/json"
     },
-    "body": "{\"temperature\": \"90C\"}",
+    "body": "{\"temperature\": \"60\"}",
     "status": 200
   }
 }

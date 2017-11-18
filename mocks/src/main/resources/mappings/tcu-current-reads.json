@@ -11,9 +11,6 @@
       },
       {
         "matchesJsonPath" : "$.throttleLevel"
-      },
-      {
-        "matchesJsonPath" : "$.transmissionFluidTemperature"
       }
     ]
   },

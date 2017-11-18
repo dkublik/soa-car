@@ -1,10 +1,10 @@
 {
   "request": {
-    "urlPath": "/dcu/child-lock",
+    "urlPath": "/ecu/acc-pedal-position",
     "method": "POST",
     "bodyPatterns" : [
       {
-        "matchesJsonPath" : "$.on"
+        "matchesJsonPath" : "$.app"
       }
     ]
   },

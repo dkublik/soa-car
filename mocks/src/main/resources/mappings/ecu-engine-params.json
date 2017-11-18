@@ -1,10 +1,13 @@
 {
   "request": {
-    "urlPath": "/dcu/window-position",
+    "urlPath": "/ecu/engine-params",
     "method": "POST",
     "bodyPatterns" : [
       {
-        "matchesJsonPath" : "$.position"
+        "matchesJsonPath" : "$.map"
+      },
+      {
+        "matchesJsonPath" : "$.cts"
       }
     ]
   },
