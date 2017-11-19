@@ -5,11 +5,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.dk.soa.service.device.Car;
-import pl.dk.soa.service.ecu.response.ThrottleResponse;
 import pl.dk.soa.service.sensors.response.*;
 
-import static java.lang.Math.*;
-import static pl.dk.soa.service.device.Car.*;
+import static pl.dk.soa.service.util.RangeTransformer.transformToRange;
 
 @Service
 @Getter
@@ -44,21 +42,13 @@ class EcuModule {
     }
 
     private int calculateThrottleLevel(int pressure, int temperature, int pedalPosition) {
-        return 90;
+        int throttleLevel = transformToRange(pedalPosition, new int[]{0, 20, 40, 60, 80, 100}, new int[]{0, 10, 20, 40, 60, 100});
+        if (temperature > 110) {
+            throttleLevel = (int) (0.8 * throttleLevel);
+        }
+        if (pressure > 110) {
+            throttleLevel = (int) (0.8 * throttleLevel);
+        }
+        return throttleLevel;
     }
-
-    private double expectedRpm(int speed) {
-        double metersPerMinute = speed * 1000 / 60;
-        double wheelCircumference = PI * WHEEL_DIAMETER;
-        return metersPerMinute / wheelCircumference;
-    }
-
-    private boolean goingUp(int speed, int rpm) {
-        return rpm - expectedRpm(speed) > 100;
-    }
-
-    private boolean goingDown(int speed, int rpm) {
-        return expectedRpm(speed) - rpm > 100;
-    }
-
 }

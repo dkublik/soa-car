@@ -13,6 +13,7 @@ import static java.lang.Math.PI;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static pl.dk.soa.service.device.Car.*;
+import static pl.dk.soa.service.util.RangeTransformer.transformToRange;
 
 @Service
 @Getter
@@ -49,9 +50,9 @@ class TcuModule {
     }
 
     private int calculateGear(int speed, int rpm, int throttleLevel) {
-        int gear = speed / MAX_SPEED * MAX_GEAR;
+        int gear = transformToRange(speed, new int[]{0, 20, 30, 45, 65, 220}, new int[]{1, 2, 3, 4, 5, 6});
         if ((MAX_THROTTLE_LEVEL - throttleLevel) < 5) {
-            gear = MAX_GEAR;
+            gear = min(MAX_GEAR, gear + 1);
         }
         if (goingUp(speed, rpm)) {
             gear = max(gear - 1, 1);
@@ -62,7 +63,7 @@ class TcuModule {
     }
 
     private double expectedRpm(int speed) {
-        double metersPerMinute = speed * 1000 / 60;
+        double metersPerMinute = speed * 1000d / 60;
         double wheelCircumference = PI * WHEEL_DIAMETER;
         return metersPerMinute / wheelCircumference;
     }
