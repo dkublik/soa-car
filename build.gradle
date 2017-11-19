@@ -55,6 +55,7 @@ subprojects {
             dependency('io.springfox:springfox-swagger2:2.7.0')
             dependency('io.springfox:springfox-swagger-ui:2.7.0')
             dependency('org.projectlombok:lombok:1.16.18')
+            dependency('org.json:json:20171018')
         }
     }
 

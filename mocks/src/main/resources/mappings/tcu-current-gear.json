@@ -7,7 +7,7 @@
     "headers": {
       "Content-Type": "application/json"
     },
-    "body": "{\"currentGear\": \"4\"}",
+    "body": "{\"currentGear\": 4}",
     "status": 200
   }
 }

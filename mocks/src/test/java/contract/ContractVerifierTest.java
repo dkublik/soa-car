@@ -1,55 +1,58 @@
 package contract;
 
-import com.jayway.jsonpath.DocumentContext;
-import com.jayway.jsonpath.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.jupiter.api.Test;
 import org.json.JSONObject;
-import org.junit.Test;
 
-import static com.toomuchcoding.jsonassert.JsonAssertion.assertThatJson;
 import static io.restassured.RestAssured.*;
 import static io.restassured.http.ContentType.JSON;
-import static org.springframework.cloud.contract.verifier.assertion.SpringCloudContractAssertions.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.springframework.http.HttpStatus.ACCEPTED;
+import static org.springframework.http.HttpStatus.OK;
 
 public class ContractVerifierTest {
 
 	static final String HOST = "http://localhost:8181";
 
 	@Test
-	public void validateEcuAccPedalPosition() throws Exception {
+	public void validateEcuAccPedalPosition() {
 		// given:
 			RequestSpecification request = given()
                     .contentType(JSON)
                     .body(new JSONObject()
                             .put("app",30)
-                            .toString());
+                            .toString()
+                    );
 		// when:
 			Response response = request.when()
 					.post(HOST + "/ecu/acc-pedal-position");
 
 		// then:
-			assertThat(response.statusCode()).isEqualTo(202);
-			assertThat(response.header("Content-Type")).isEqualTo("application/json");
+			response.then()
+					.statusCode(ACCEPTED.value())
+					.contentType(JSON);
 	}
 
 	@Test
-	public void validateEcuEngineParams() throws Exception {
+	public void validateEcuEngineParams() {
 		// given:
             RequestSpecification request = given()
-                .contentType(JSON)
-                .body(new JSONObject()
-                        .put("map",90)
-                        .put("cts", 60)
-                        .toString());
+                    .contentType(JSON)
+                    .body(new JSONObject()
+                            .put("map", 90)
+                            .put("cts", 60)
+                            .toString()
+                    );
 
 		// when:
 			Response response = request.when()
 					.post(HOST +"/ecu/engine-params");
 
 		// then:
-			assertThat(response.statusCode()).isEqualTo(202);
-			assertThat(response.header("Content-Type")).isEqualTo("application/json");
+		    response.then()
+                    .statusCode(ACCEPTED.value())
+                    .contentType(JSON);
 	}
 
 	@Test
@@ -59,11 +62,10 @@ public class ContractVerifierTest {
 					.get(HOST + "/ecu/throttle");
 
 		// then:
-			assertThat(response.statusCode()).isEqualTo(200);
-			assertThat(response.header("Content-Type")).isEqualTo("application/json");
-		// and:
-			DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
-			assertThatJson(parsedJson).field("['level']").isEqualTo("70%");
+		    response.then()
+                    .statusCode(OK.value())
+                    .contentType(JSON)
+                    .body("level", is(70));
 	}
 
 	@Test
@@ -72,26 +74,24 @@ public class ContractVerifierTest {
 			Response response = when()
 					.get(HOST + "/sensors/app");
 
-		// then:
-			assertThat(response.statusCode()).isEqualTo(200);
-			assertThat(response.header("Content-Type")).isEqualTo("application/json");
-		// and:
-			DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
-			assertThatJson(parsedJson).field("['pedal-position']").isEqualTo("40");
+        // then:
+        response.then()
+                    .statusCode(OK.value())
+                    .contentType(JSON)
+                    .body("pedalPosition", is(40));
 	}
 
-	@Test
+	 @Test
 	public void validateSensorsCts() {
 		// when:
 			Response response = when()
 					.get(HOST + "/sensors/cts");
 
-		// then:
-			assertThat(response.statusCode()).isEqualTo(200);
-			assertThat(response.header("Content-Type")).isEqualTo("application/json");
-		// and:
-			DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
-			assertThatJson(parsedJson).field("['temperature']").isEqualTo("60");
+         // then:
+         response.then()
+                     .statusCode(OK.value())
+                     .contentType(JSON)
+                     .body("temperature", is(60));
 	}
 
 	@Test
@@ -100,12 +100,11 @@ public class ContractVerifierTest {
 			Response response = when()
 					.get(HOST + "/sensors/map");
 
-		// then:
-			assertThat(response.statusCode()).isEqualTo(200);
-			assertThat(response.header("Content-Type")).isEqualTo("application/json");
-		// and:
-			DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
-			assertThatJson(parsedJson).field("['pressure']").isEqualTo("90");
+		// then
+            response.then()
+                    .statusCode(OK.value())
+                    .contentType(JSON)
+                    .body("pressure", is(90));
 	}
 
 	@Test
@@ -115,11 +114,10 @@ public class ContractVerifierTest {
 					.get(HOST + "/sensors/rpm");
 
 		// then:
-			assertThat(response.statusCode()).isEqualTo(200);
-			assertThat(response.header("Content-Type")).isEqualTo("application/json");
-		// and:
-			DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
-			assertThatJson(parsedJson).field("['rpm']").isEqualTo("1200");
+            response.then()
+                    .statusCode(OK.value())
+                    .contentType(JSON)
+                    .body("rpm", is(1200));
 	}
 
 	@Test
@@ -129,11 +127,10 @@ public class ContractVerifierTest {
 					.get(HOST + "/sensors/vss");
 
 		// then:
-			assertThat(response.statusCode()).isEqualTo(200);
-			assertThat(response.header("Content-Type")).isEqualTo("application/json");
-		// and:
-			DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
-			assertThatJson(parsedJson).field("['speed']").isEqualTo("120");
+            response.then()
+                    .statusCode(OK.value())
+                    .contentType(JSON)
+                    .body("speed", is(120));
 	}
 
 	@Test
@@ -143,15 +140,14 @@ public class ContractVerifierTest {
 					.get(HOST + "/tcu/current-gear");
 
 		// then:
-			assertThat(response.statusCode()).isEqualTo(200);
-			assertThat(response.header("Content-Type")).isEqualTo("application/json");
-		// and:
-			DocumentContext parsedJson = JsonPath.parse(response.getBody().asString());
-			assertThatJson(parsedJson).field("['currentGear']").isEqualTo("4");
+            response.then()
+                    .statusCode(OK.value())
+                    .contentType(JSON)
+                    .body("currentGear", is(4));
 	}
 
 	@Test
-	public void validateTcuCurrentReads() throws Exception {
+	public void validateTcuCurrentReads() {
 		// given:
             RequestSpecification request = given()
                 .contentType(JSON)
@@ -166,8 +162,9 @@ public class ContractVerifierTest {
 					.post(HOST + "/tcu/current-reads");
 
 		// then:
-			assertThat(response.statusCode()).isEqualTo(202);
-			assertThat(response.header("Content-Type")).isEqualTo("application/json");
+            response.then()
+                    .statusCode(ACCEPTED.value())
+                    .contentType(JSON);
 	}
 
 }
