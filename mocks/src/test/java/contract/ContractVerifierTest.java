@@ -65,7 +65,7 @@ public class ContractVerifierTest {
 		    response.then()
                     .statusCode(OK.value())
                     .contentType(JSON)
-                    .body("level", is(70));
+                    .body("level", is(50));
 	}
 
 	@Test
@@ -78,7 +78,7 @@ public class ContractVerifierTest {
         response.then()
                     .statusCode(OK.value())
                     .contentType(JSON)
-                    .body("pedalPosition", is(40));
+                    .body("pedalPosition", is(70));
 	}
 
 	 @Test

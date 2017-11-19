@@ -7,7 +7,8 @@
     "headers": {
       "Content-Type": "application/json"
     },
-    "body": "{\"pedalPosition\": 40}",
+    "body": "{\"pedalPosition\": 70}",
     "status": 200
   }
 }
+
