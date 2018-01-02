@@ -45,13 +45,13 @@ subprojects {
 
     dependencyManagement {
         imports {
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Finchley.M4")
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Finchley.M5")
         }
         dependencies {
-            dependency('org.junit.jupiter:junit-jupiter-api:5.0.1')
-            dependency('io.rest-assured:rest-assured:3.0.5')
-            dependency('com.github.tomakehurst:wiremock-standalone:2.11.0')
-            dependency('org.junit.jupiter:junit-jupiter-engine:5.0.1')
+            dependency('org.junit.jupiter:junit-jupiter-api:5.0.2')
+            dependency('org.junit.jupiter:junit-jupiter-engine:5.0.2')
+            dependency('io.rest-assured:rest-assured:3.0.6')
+            dependency('com.github.tomakehurst:wiremock-standalone:2.12.0')
             dependency('io.springfox:springfox-swagger2:2.7.0')
             dependency('io.springfox:springfox-swagger-ui:2.7.0')
             dependency('org.projectlombok:lombok:1.16.18')
@@ -62,5 +62,5 @@ subprojects {
 }
 
 wrapper {
-    gradleVersion '4.3.1'
+    gradleVersion '4.4.1'
 }
