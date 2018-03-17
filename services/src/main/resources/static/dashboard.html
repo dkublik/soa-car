@@ -58,7 +58,7 @@ window.onload = function () {
 		$.getJSON( "/sensors/map", function( data ) {
 			updateChart(mapChart, data.pressure);
 		});
-		$.getJSON( "/sensors/rpm", function( data ) {
+		$.getJSON( "/sensors/wss", function( data ) {
 			updateChart(rpmChart, data.rpm);
 		});
 		$.getJSON( "/sensors/vss", function( data ) {

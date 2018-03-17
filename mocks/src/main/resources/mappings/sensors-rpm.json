@@ -1,6 +1,6 @@
 {
   "request": {
-    "urlPath": "/sensors/rpm",
+    "urlPath": "/sensors/wss",
     "method": "GET"
   },
   "response": {

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.dk.soa.service.device.Car;
 import pl.dk.soa.service.ecu.response.ThrottleResponse;
-import pl.dk.soa.service.sensors.response.RpmResponse;
+import pl.dk.soa.service.sensors.response.WssResponse;
 import pl.dk.soa.service.sensors.response.VssResponse;
 
 import static java.lang.Math.PI;
@@ -36,7 +36,7 @@ class TcuModule {
     public void adjustGear() {
         try {
             int speed = restTemplate.getForObject(SENSORS_HOST + "/sensors/vss", VssResponse.class).getSpeed();
-            int rpm = restTemplate.getForObject(SENSORS_HOST + "/sensors/rpm", RpmResponse.class).getRpm();
+            int rpm = restTemplate.getForObject(SENSORS_HOST + "/sensors/wss", WssResponse.class).getRpm();
             int throttleLevel = restTemplate.getForObject(ECU_HOST + "/ecu/throttle", ThrottleResponse.class).getLevel();
             int gear = calculateGear(speed, rpm, throttleLevel);
             car.setCurrentGear(gear);

@@ -41,10 +41,10 @@ class SensorsController {
         return new ResponseEntity<>(new MapResponse(car.getManifoldPressure()), OK);
     }
 
-    @GetMapping(path = "/rpm")
-    @ApiOperation(value = "rpm")
-    ResponseEntity<RpmResponse> rpm() {
-        return new ResponseEntity<>(new RpmResponse(car.getRpm()), OK);
+    @GetMapping(path = "/wss")
+    @ApiOperation(value = "wss")
+    ResponseEntity<WssResponse> wss() {
+        return new ResponseEntity<>(new WssResponse(car.getRpm()), OK);
     }
 
     @GetMapping(path = "/vss")
