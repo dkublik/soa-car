@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import pl.dk.soa.service.config.Hosts;
 import pl.dk.soa.service.device.Car;
 import pl.dk.soa.service.ecu.response.ThrottleResponse;
 import pl.dk.soa.service.sensors.response.WssResponse;
@@ -12,16 +13,14 @@ import pl.dk.soa.service.sensors.response.VssResponse;
 import static java.lang.Math.PI;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static pl.dk.soa.service.config.Hosts.ECU_HOST;
+import static pl.dk.soa.service.config.Hosts.SENSORS_HOST;
 import static pl.dk.soa.service.device.Car.*;
 import static pl.dk.soa.service.util.RangeTransformer.transformToRange;
 
 @Service
 @Getter
 class TcuModule {
-
-    static final String SENSORS_HOST = "http://localhost:8182";
-
-    static final String ECU_HOST = "http://localhost:8182";
 
     private final RestTemplate restTemplate;
 

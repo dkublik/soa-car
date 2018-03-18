@@ -7,13 +7,12 @@ import org.springframework.web.client.RestTemplate;
 import pl.dk.soa.service.device.Car;
 import pl.dk.soa.service.sensors.response.*;
 
+import static pl.dk.soa.service.config.Hosts.SENSORS_HOST;
 import static pl.dk.soa.service.util.RangeTransformer.transformToRange;
 
 @Service
 @Getter
 class EcuModule {
-
-    static final String SENSORS_HOST = "http://localhost:8182";
 
     private final RestTemplate restTemplate;
 
