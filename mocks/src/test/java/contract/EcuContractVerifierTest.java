@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 import static io.restassured.http.ContentType.JSON;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.springframework.http.HttpStatus.ACCEPTED;
 import static org.springframework.http.HttpStatus.OK;
 import static pl.dk.soa.service.Hosts.MOCK_HOST;
@@ -27,9 +29,10 @@ public class EcuContractVerifierTest {
 		response.then()
 				.statusCode(OK.value())
 				.contentType(JSON)
-				.body("level", is(50));
+				.body("level", allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(100)));
 	}
 
+	// won't pass - implemented by pulling
     @Test
     public void validateEcuEngineParams() {
         // given:
@@ -51,6 +54,7 @@ public class EcuContractVerifierTest {
                 .contentType(JSON);
     }
 
+	// won't pass - implemented by pulling
 	@Test
 	public void validateEcuAccPedalPosition() {
 		// given:

@@ -1,15 +1,13 @@
 package contract;
 
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 import static io.restassured.http.ContentType.JSON;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.springframework.http.HttpStatus.ACCEPTED;
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.springframework.http.HttpStatus.OK;
 import static pl.dk.soa.service.Hosts.MOCK_HOST;
 
@@ -18,36 +16,55 @@ public class SensorsContractVerifierTest {
 	static final String HOST = MOCK_HOST;
 
     @Test
-    public void validateTcuCurrentGear() {
+    public void validateSensorsWss() {
         // when:
         Response response = when()
-                .get(HOST + "/tcu/current-gear");
+                .get(HOST + "/sensors/wss");
 
         // then:
         response.then()
                 .statusCode(OK.value())
                 .contentType(JSON)
-                .body("currentGear", greaterThan(4));
+                .body("rpm", allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(2000)));
     }
 
     @Test
-    public void validateTcuCurrentReads() {
-        // given:
-        RequestSpecification request = given()
-                .contentType(JSON)
-                .body(new JSONObject()
-                        .put("vehicleSpeed", 160)
-                        .put("rpm", 1400)
-                        .put("throttleLevel", 70)
-                        .toString());
-
+    public void validateSensorsMap() {
         // when:
-        Response response = request.when()
-                .post(HOST + "/tcu/current-reads");
+        Response response = when()
+                .get(HOST + "/sensors/map");
+
+        // then
+        response.then()
+                .statusCode(OK.value())
+                .contentType(JSON)
+                .body("pressure", allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(120)));
+    }
+
+    @Test
+    public void validateSensorsCts() {
+        // when:
+        Response response = when()
+                .get(HOST + "/sensors/cts");
 
         // then:
         response.then()
-                .statusCode(ACCEPTED.value())
-                .contentType(JSON);
+                .statusCode(OK.value())
+                .contentType(JSON)
+                .body("temperature", allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(100)));
     }
+
+    @Test
+    public void validateSensorsApp() {
+        // when:
+        Response response = when()
+                .get(HOST + "/sensors/app");
+
+        // then:
+        response.then()
+                .statusCode(OK.value())
+                .contentType(JSON)
+                .body("pedalPosition",allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(100)));
+    }
+
 }
