@@ -11,12 +11,12 @@ import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.springframework.http.HttpStatus.OK;
 import static pl.dk.soa.service.Hosts.MOCK_HOST;
 
-public class SensorsContractVerifierTest {
+class SensorsContractVerifierTest {
 
 	static final String HOST = MOCK_HOST;
 
     @Test
-    public void validateSensorsWss() {
+    void validateSensorsWss() {
         // when:
         Response response = when()
                 .get(HOST + "/sensors/wss");
@@ -29,7 +29,7 @@ public class SensorsContractVerifierTest {
     }
 
     @Test
-    public void validateSensorsMap() {
+    void validateSensorsMap() {
         // when:
         Response response = when()
                 .get(HOST + "/sensors/map");
@@ -42,7 +42,7 @@ public class SensorsContractVerifierTest {
     }
 
     @Test
-    public void validateSensorsCts() {
+    void validateSensorsCts() {
         // when:
         Response response = when()
                 .get(HOST + "/sensors/cts");
@@ -55,7 +55,7 @@ public class SensorsContractVerifierTest {
     }
 
     @Test
-    public void validateSensorsApp() {
+    void validateSensorsApp() {
         // when:
         Response response = when()
                 .get(HOST + "/sensors/app");

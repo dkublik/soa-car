@@ -15,12 +15,12 @@ import static org.springframework.http.HttpStatus.ACCEPTED;
 import static org.springframework.http.HttpStatus.OK;
 import static pl.dk.soa.service.Hosts.MOCK_HOST;
 
-public class EcuContractVerifierTest {
+class EcuContractVerifierTest {
 
 	static final String HOST = MOCK_HOST;
 
 	@Test
-	public void validateEcuThrottle() {
+	void validateEcuThrottle() {
 		// when:
 		Response response = when()
 				.get(HOST + "/ecu/throttle");
@@ -34,7 +34,7 @@ public class EcuContractVerifierTest {
 
 	// won't pass - implemented by pulling
     @Test
-    public void validateEcuEngineParams() {
+    void validateEcuEngineParams() {
         // given:
         RequestSpecification request = given()
                 .contentType(JSON)
@@ -56,7 +56,7 @@ public class EcuContractVerifierTest {
 
 	// won't pass - implemented by pulling
 	@Test
-	public void validateEcuAccPedalPosition() {
+	void validateEcuAccPedalPosition() {
 		// given:
 			RequestSpecification request = given()
                     .contentType(JSON)

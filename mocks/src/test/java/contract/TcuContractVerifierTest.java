@@ -15,12 +15,12 @@ import static org.springframework.http.HttpStatus.ACCEPTED;
 import static org.springframework.http.HttpStatus.OK;
 import static pl.dk.soa.service.Hosts.MOCK_HOST;
 
-public class TcuContractVerifierTest {
+class TcuContractVerifierTest {
 
 	static final String HOST = MOCK_HOST;
 
     @Test
-    public void validateTcuCurrentGear() {
+    void validateTcuCurrentGear() {
         // when:
         Response response = when()
                 .get(HOST + "/tcu/current-gear");
@@ -34,7 +34,7 @@ public class TcuContractVerifierTest {
 
     // won't pass - implemented by pulling
     @Test
-    public void validateTcuCurrentReads() {
+    void validateTcuCurrentReads() {
         // given:
         RequestSpecification request = given()
                 .contentType(JSON)
